@@ -1,0 +1,725 @@
+<!--
+Premium Portfolio (single-file)
+- File: index.html
+- How to use: save this content as index.html, put in a folder images/ if you replace placeholders.
+- Replace NAME, EMAIL, and Live Demo links with your real links. Replace placeholder images (unsplash) with your screenshots for marketplace.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sayan Biswas — Premium Portfolio</title>
+    <meta
+      name="description"
+      content="Premium portfolio — high quality website templates & landing pages. Built with HTML, CSS and vanilla JS."
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Poppins:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap 5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* =========== VARIABLES =========== */
+      :root {
+        --bg: #0f1724; /* dark midnight */
+        --card: #0b1220;
+        --glass: rgba(255, 255, 255, 0.06);
+        --accent: #6c5ce7; /* purple */
+        --accent-2: #00d4ff; /* cyan */
+        --muted: rgba(255, 255, 255, 0.7);
+      }
+      /* =========== GLOBAL =========== */
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial;
+        background: linear-gradient(180deg, #071226 0%, #07182a 60%),
+          url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="%23000" stop-opacity="0.08"/><stop offset="1" stop-color="%23000" stop-opacity="0.02"/></linearGradient></defs><rect fill="url(%23g)" width="100%" height="100%"/></svg>')
+            no-repeat center/cover;
+        color: #e6eef8;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        scroll-behavior: smooth;
+      }
+
+      a {
+        text-decoration: none;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      /* =========== NAV =========== */
+      .nav-transparent {
+        background: transparent;
+      }
+      .navbar-brand {
+        font-weight: 700;
+        letter-spacing: 0.2px;
+      }
+      .nav-link {
+        color: var(--muted) !important;
+      }
+
+      /* =========== HERO =========== */
+      .hero {
+        min-height: 86vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        padding: 4rem 0;
+      }
+      .hero-inner {
+        max-width: 1100px;
+        text-align: center;
+        padding: 3rem;
+        border-radius: 18px;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.03),
+          rgba(255, 255, 255, 0.02)
+        );
+        backdrop-filter: blur(6px);
+        box-shadow: 0 10px 40px rgba(2, 6, 23, 0.6);
+      }
+      .eyebrow {
+        display: inline-block;
+        padding: 0.35rem 0.7rem;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        color: white;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+      .hero h1 {
+        font-family: "Poppins", sans-serif;
+        font-size: 2.25rem;
+        margin: 0 0 0.6rem;
+      }
+      .hero p.lead {
+        color: var(--muted);
+        font-size: 1.05rem;
+        margin-bottom: 1.3rem;
+      }
+      .cta-group .btn {
+        border-radius: 12px;
+        padding: 0.65rem 1.1rem;
+      }
+
+      /* subtle animated shapes */
+      .shape {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(40px);
+        opacity: 0.6;
+      }
+      .shape.one {
+        width: 360px;
+        height: 360px;
+        left: -80px;
+        top: -40px;
+        background: linear-gradient(45deg, var(--accent), var(--accent-2));
+        transform: rotate(20deg);
+      }
+      .shape.two {
+        width: 260px;
+        height: 260px;
+        right: -60px;
+        bottom: -40px;
+        background: linear-gradient(45deg, #ff7ab6, #ffb86b);
+      }
+
+      /* =========== FEATURES =========== */
+      .features {
+        margin-top: 2rem;
+      }
+      .feature {
+        background: var(--glass);
+        padding: 1rem;
+        border-radius: 12px;
+      }
+
+      /* =========== PORTFOLIO =========== */
+      .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+      }
+      @media (max-width: 991px) {
+        .portfolio-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 575px) {
+        .portfolio-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .card-proj {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.02),
+          rgba(255, 255, 255, 0.01)
+        );
+        border: none;
+        border-radius: 14px;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+      }
+      .card-proj img {
+        height: 210px;
+        object-fit: cover;
+      }
+      .proj-body {
+        padding: 1rem;
+      }
+      .proj-title {
+        font-weight: 700;
+        margin-bottom: 0.3rem;
+      }
+      .proj-sub {
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+      .proj-badge {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        background: rgba(0, 0, 0, 0.35);
+        padding: 0.35rem 0.6rem;
+        border-radius: 8px;
+        font-size: 0.8rem;
+      }
+      .proj-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, transparent, rgba(2, 6, 23, 0.5));
+        opacity: 0;
+        transition: opacity 0.28s;
+      }
+      .card-proj:hover .proj-overlay {
+        opacity: 1;
+      }
+      .proj-actions {
+        position: absolute;
+        right: 12px;
+        bottom: 12px;
+        opacity: 0;
+        transform: translateY(8px);
+        transition: all 0.28s;
+      }
+      .card-proj:hover .proj-actions {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* modal preview */
+      .modal-content {
+        background: linear-gradient(
+          180deg,
+          rgba(10, 14, 20, 0.95),
+          rgba(4, 8, 12, 0.95)
+        );
+        border: none;
+      }
+
+      /* =========== STATS & CTA =========== */
+      .stats {
+        display: flex;
+        gap: 1.25rem;
+        align-items: center;
+      }
+      .stat {
+        background: var(--card);
+        padding: 1rem;
+        border-radius: 12px;
+        text-align: center;
+        flex: 1;
+      }
+      .stat .num {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--accent);
+      }
+
+      /* =========== SERVICES =========== */
+      .service {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.02),
+          rgba(255, 255, 255, 0.01)
+        );
+        padding: 1.25rem;
+        border-radius: 12px;
+      }
+
+      /* =========== CONTACT =========== */
+      .contact-card {
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.02),
+          rgba(255, 255, 255, 0.01)
+        );
+        padding: 1.25rem;
+        border-radius: 12px;
+      }
+
+      /* =========== FOOTER =========== */
+      footer {
+        opacity: 0.9;
+        padding: 2rem 0;
+        text-align: center;
+        color: var(--muted);
+      }
+
+      /* =========== ANIMATIONS =========== */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(12px);
+        animation: fadeInUp 0.6s forwards;
+      }
+      .delay-1 {
+        animation-delay: 0.12s;
+      }
+      .delay-2 {
+        animation-delay: 0.18s;
+      }
+      .delay-3 {
+        animation-delay: 0.24s;
+      }
+      @keyframes fadeInUp {
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* small helper */
+      .muted {
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark py-3 nav-transparent">
+      <div class="container">
+        <a class="navbar-brand" href="#">NIPA<span class="">.dev</span></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navmenu"
+          aria-controls="navmenu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navmenu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#portfolio">Work</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#services">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+      <div class="shape one"></div>
+      <div class="shape two"></div>
+
+      <div class="hero-inner container fade-in delay-1">
+        <span class="eyebrow">Premium Templates</span>
+        <h1>
+          Hi, I'm <span style="color: var(--accent)">Nipa Biswas</span
+          ><br /><small class="muted"
+            >— Web Template Designer & Frontend Developer</small
+          >
+        </h1>
+        <p class="lead muted">
+          I build high-quality, marketplace-ready website templates and landing
+          pages — optimized for performance, SEO and conversions.
+        </p>
+
+        <div class="d-flex justify-content-center gap-3 cta-group mt-3">
+          <a href="#portfolio" class="btn btn-primary btn-lg">View Work</a>
+          <a href="#contact" class="btn btn-outline-light btn-lg">Hire Me</a>
+        </div>
+
+        <div class="features row mt-4 g-3">
+          <div class="col-md-4">
+            <div class="feature text-start">
+              <strong>Fast & Light</strong>
+              <div class="muted small">Pure HTML/CSS, optimized assets</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature text-start">
+              <strong>Marketplace Ready</strong>
+              <div class="muted small">
+                Clean file structure & documentation
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature text-start">
+              <strong>Responsive</strong>
+              <div class="muted small">Mobile-first & accessible</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-5">
+      <div class="container">
+        <div class="row align-items-center gy-4">
+          <div class="col-lg-6 order-lg-1">
+            <h3 class="mb-3">About Me</h3>
+            <p class="muted">
+              I'm a frontend developer focused on making premium,
+              high-converting website templates and UI kits. I handcraft each
+              template for fast performance and easy customization so customers
+              can launch quickly.
+            </p>
+
+            <div class="row mt-3">
+              <div class="col-6 mb-2">
+                <div class="stat p-3">
+                  <div class="num">120+</div>
+                  <div class="muted small">Pages & Blocks</div>
+                </div>
+              </div>
+              <div class="col-6 mb-2">
+                <div class="stat p-3">
+                  <div class="num">50+</div>
+                  <div class="muted small">Templates Built</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5 offset-lg-1 order-lg-2">
+            <div class="contact-card p-4">
+              <h5 class="mb-2">Quick Info</h5>
+              <p class="small muted mb-2">
+                Location: Bangladesh · Languages: Bengali, English
+              </p>
+              <p class="small muted mb-0">
+                Stack: HTML, CSS, Bootstrap, JavaScript, React (optional)
+              </p>
+              <div class="mt-3">
+                <a href="#contact" class="btn btn-outline-light btn-sm me-2"
+                  >Contact</a
+                >
+                <a href="#portfolio" class="btn btn-primary btn-sm">See Work</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO GRID -->
+    <section id="portfolio" class="py-5">
+      <div class="container">
+        <h3 class="mb-4">Selected Work</h3>
+
+        <div class="portfolio-grid">
+          <!-- Project card #1 -->
+          <div
+            class="card-proj fade-in delay-1"
+            data-title="SaaS Landing — Velocity"
+            data-desc="High-conversion SaaS landing page with pricing, features and testimonial sections."
+            data-image="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=abc"
+          >
+            <div class="proj-badge">Landing</div>
+            <img src="Images/new website.png" alt="project" />
+            <div class="proj-overlay"></div>
+            <div class="proj-body">
+              <div class="proj-title">Creative-Designer(Portfolio)..</div>
+              <div class="proj-sub">
+                A clean, modern, and conversion-optimized portfolio template
+                perfect for freelancers, entrepreneurs, and developers — built
+                with React.js.
+              </div>
+              <div class="proj-actions">
+                <button
+                  class="btn btn-sm btn-light me-2"
+                  onclick="openPreview(this)"
+                >
+                  Preview
+                </button>
+                <a
+                  class="btn btn-sm btn-outline-primary"
+                  href="https://sayan-biswas01.github.io/WebDeveloper-portfolio/"
+                  >Live</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Project card #2 -->
+          <div
+            class="card-proj fade-in delay-2"
+            data-title="Portfolio Kit — Studio"
+            data-desc="Minimal portfolio kit with multiple hero styles and case study pages."
+            data-image="https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=def"
+          >
+            <div class="proj-badge">Portfolio</div>
+            <img src="Images/Untitled design (1).png" alt="project" />
+            <div class="proj-overlay"></div>
+            <div class="proj-body">
+              <div class="proj-title">Landign Page (Template),,</div>
+              <div class="proj-sub">
+                A clean, modern, and conversion-optimized Landing Page templates
+                for creatives and agencies.
+              </div>
+              <div class="proj-actions">
+                <button
+                  class="btn btn-sm btn-light me-2"
+                  onclick="openPreview(this)"
+                >
+                  Preview
+                </button>
+                <a
+                  class="btn btn-sm btn-outline-primary"
+                  href="https://nipa-mondal2908.github.io/Landing_page_Demo-Only/"
+                  >Live</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Project card #3 -->
+          <div
+            class="card-proj fade-in delay-3"
+            data-title="Corp — Business Site"
+            data-desc="Multi-page corporate website with services, team and contact sections."
+            data-image="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=ghi"
+          >
+            <div class="proj-badge">Business</div>
+            <img src="Images/Business-SiteDemo.png" alt="project" />
+            <div class="proj-overlay"></div>
+            <div class="proj-body">
+              <div class="proj-title">Corp — Business Site</div>
+              <div class="proj-sub">
+                Professional business website for agencies and consultancies.
+              </div>
+              <div class="proj-actions">
+                <button
+                  class="btn btn-sm btn-light me-2"
+                  onclick="openPreview(this)"
+                >
+                  Preview
+                </button>
+                <a
+                  class="btn btn-sm btn-outline-primary"
+                  href="https://nipa-mondal2908.github.io/Business-Site_Template/"
+                  >Live</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-4">
+          <a href="#contact" class="btn btn-outline-light"
+            >Hire me for custom work</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section
+      id="services"
+      class="py-5 bg-light"
+      style="
+        color: #081224;
+        background: linear-gradient(180deg, #f7fafc, #eef2ff);
+      "
+    >
+      <div class="container">
+        <h3 class="mb-4">Services</h3>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <div class="service p-3">
+              <h5>Marketplace Templates</h5>
+              <p class="small">
+                Well documented, organized files, and layered designs ready for
+                Creative Market/ThemeForest.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="service p-3">
+              <h5>Landing Pages</h5>
+              <p class="small">
+                Conversion-first landing pages with strong visual hierarchy.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="service p-3">
+              <h5>Custom Projects</h5>
+              <p class="small">
+                Tailored templates and feature additions on demand.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CONTACT -->
+    <section id="contact" class="py-5 bg-light">
+      <div class="container">
+        <h2 class="section-title text-center mb-4">Contact</h2>
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-4 p-4 text-center">
+              <h5 class="mb-3 fw-bold">Let's Connect</h5>
+              <p class="mb-2">
+                <strong>Email:</strong>
+                <a
+                  href="mnipa2908@gmail.com"
+                  class="text-decoration-none text-primary"
+                >
+                  mnipa2908@gmail.com
+                </a>
+              </p>
+              <p class="mb-4">
+                <strong>Phone:</strong>
+                <a
+                  href="tel:+880123456789"
+                  class="text-decoration-none text-dark"
+                >
+                  +880 1873-636-308
+                </a>
+              </p>
+              <div class="d-flex justify-content-center gap-3">
+                <a
+                  href="https://github.com/Nipa-Mondal2908?tab=repositories"
+                  class="btn btn-outline-dark btn-sm px-3"
+                  >GitHub</a
+                >
+                <a href="#" class="btn btn-outline-dark btn-sm px-3"
+                  >LinkedIn</a
+                >
+                <a href="#" class="btn btn-outline-dark btn-sm px-3">Twitter</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <p class="mb-0 small">
+          © 2025 Sayan Biswas — Templates & UI kits. Designed for marketplaces.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Project preview modal -->
+    <div class="modal fade" id="previewModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header border-0">
+            <h5 class="modal-title" id="previewTitle"></h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body p-0">
+            <img
+              id="previewImg"
+              src=""
+              alt="preview"
+              style="width: 100%; height: auto; display: block"
+            />
+          </div>
+          <div class="modal-footer border-0">
+            <p class="muted small mb-0" id="previewDesc"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // Fade-in sequence for elements already has CSS. This small script triggers sequence on load.
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".fade-in").forEach(function (el, i) {
+          el.style.animationDelay = i * 0.06 + "s";
+        });
+      });
+
+      // Open preview modal from portfolio cards
+      function openPreview(btn) {
+        var card = btn.closest(".card-proj");
+        var title = card.dataset.title || "Preview";
+        var desc = card.dataset.desc || "";
+        var img = card.dataset.image || card.querySelector("img").src;
+        document.getElementById("previewTitle").textContent = title;
+        document.getElementById("previewDesc").textContent = desc;
+        document.getElementById("previewImg").src = img;
+        var modal = new bootstrap.Modal(
+          document.getElementById("previewModal")
+        );
+        modal.show();
+      }
+
+      // Simple contact form handler (demo only)
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert(
+            "Demo form submitted. Replace with your email backend or Formspree/Netlify forms."
+          );
+          this.reset();
+        });
+    </script>
+  </body>
+</html>
